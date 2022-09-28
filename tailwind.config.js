@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'title': ['Playfair Display'],
+      'text': ['Questrial']
+    }
   },
   plugins: [],
 }

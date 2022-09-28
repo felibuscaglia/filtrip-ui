@@ -1,5 +1,11 @@
+import PageHead from "components/PageHead";
+
 const SplashPage = () => {
-  return <h1 className="text-3xl font-bold underline">Splash page.</h1>
-}
+  return (
+    <div>
+      <PageHead />
+    </div>
+  );
+};
 
 export default SplashPage;
