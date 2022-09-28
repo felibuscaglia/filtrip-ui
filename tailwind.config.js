@@ -6,9 +6,13 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      'title': ['Playfair Display'],
-      'text': ['Questrial']
-    }
+      title: ['Playfair Display'],
+      text: ['Questrial']
+    },
+    backgroundColor: theme => ({
+      ...theme('colors'),
+      primary: '#2a2a2a',
+    })
   },
   plugins: [],
 }
