@@ -5,24 +5,25 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CityCard from "./CityCard";
 
 const CitiesSection = () => {
-  const [cities, setCities] = useState<ICity[]>(new Array(6));
+  const [cities, setCities] = useState<ICity[]>([]);
   const [hasMoreCities, setHasMoreCities] = useState(true);
   const [page, setPage] = useState(0);
 
   const fetchCities = () => {
-    console.log("fetchCities called");
-    /*  apiClient
+    apiClient
       .get<ICity[]>("/cities", {
         params: {
           page,
+          limit: 6,
+          attributes: "name,urlSlug",
         },
       })
       .then(({ data }) => {
         setCities(cities.concat(data));
         setPage(page + 1);
+        setHasMoreCities(!!data.length);
       })
       .catch((err) => console.error({ err }));
-      */
   };
 
   return (
@@ -33,9 +34,10 @@ const CitiesSection = () => {
         hasMore={hasMoreCities}
         loader={<h4>Loading...</h4>}
         endMessage={<p>The end.</p>}
+        className="grid grid-cols-3 gap-y-14"
       >
-        {cities.map((city) => (
-          <CityCard />
+        {(cities.length ? cities : Array(6).fill(null)).map((city, i) => (
+          <CityCard city={city} key={`city-${city ? city?.name : i}`} />
         ))}
       </InfiniteScroll>
     </section>

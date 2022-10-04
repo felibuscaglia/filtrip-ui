@@ -12,12 +12,15 @@ body {
   margin: 0;
 }
 
+a, h3 {
+  transition: .2s ease all;
+}
+
 a {
   text-decoration: none;
   font-family: var(--text-font-family);
   cursor: pointer;
   color: var(--brand-color);
-  transition: .2s ease all;
 }
 
 h2 {
