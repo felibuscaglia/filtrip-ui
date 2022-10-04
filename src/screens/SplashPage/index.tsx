@@ -1,3 +1,4 @@
+import CitiesSection from "components/CitiesSection";
 import InputWithSuggestions from "components/InputWithSearchIcon";
 import PageHead from "components/PageHead";
 
@@ -14,6 +15,7 @@ const SplashPage = () => {
         </p>
         <InputWithSuggestions />
       </section>
+      <CitiesSection />
     </div>
   );
 };
