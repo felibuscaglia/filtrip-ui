@@ -12,7 +12,7 @@ body {
   margin: 0;
 }
 
-a, h3 {
+a, h3, span {
   transition: .2s ease all;
 }
 

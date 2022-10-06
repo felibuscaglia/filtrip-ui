@@ -13,6 +13,8 @@ const LINKS_CLASSNAMES = "w-max	hover:text-white hover:bg-black";
 const CityCard = ({ city }: ICityCardProps) => {
   const MAIN_PHOTO = city?.photos[0]?.url ?? null;
 
+  const CITY_COUNTRY = city?.country;
+
   return (
     <div className="flex items-center justify-center">
       <div className="w-4/5">
@@ -35,7 +37,7 @@ const CityCard = ({ city }: ICityCardProps) => {
             <Skeleton height={22.5} width={"50%"} />
           )}
           {city?.region ? (
-            <div>
+            <div className="h-4">
               <span
                 className={
                   "font-text text-sm cursor-pointer " + LINKS_CLASSNAMES
@@ -49,11 +51,20 @@ const CityCard = ({ city }: ICityCardProps) => {
                   "font-text text-sm cursor-pointer " + LINKS_CLASSNAMES
                 }
               >
-                {city.country.name}
+                {CITY_COUNTRY?.name}
               </span>
             </div>
           ) : (
             <Skeleton height={20} width={"75%"} />
+          )}
+          {CITY_COUNTRY?.continent ? (
+            <span
+              className={"font-text text-sm cursor-pointer " + LINKS_CLASSNAMES}
+            >
+              {CITY_COUNTRY.continent}
+            </span>
+          ) : (
+            <Skeleton height={20} width={"40%"} />
           )}
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { CONTINENT } from "lib/enums";
+
 export interface IPhoto {
   id: number;
   url: string;
@@ -7,6 +9,7 @@ interface ICountry {
   id: number;
   name: string;
   urlSlug: string;
+  continent: CONTINENT;
 }
 
 export interface ICity {
