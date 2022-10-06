@@ -15,7 +15,7 @@ const CitiesSection = () => {
         params: {
           page,
           limit: 6,
-          attributes: "name,urlSlug",
+          attributes: "name,urlSlug,region",
         },
       })
       .then(({ data }) => {

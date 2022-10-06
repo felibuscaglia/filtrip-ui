@@ -8,6 +8,8 @@ interface ICityCardProps {
   city: ICity | null;
 }
 
+const LINKS_CLASSNAMES = "w-max	hover:text-white hover:bg-black";
+
 const CityCard = ({ city }: ICityCardProps) => {
   const MAIN_PHOTO = city?.photos[0]?.url ?? null;
 
@@ -25,12 +27,33 @@ const CityCard = ({ city }: ICityCardProps) => {
         <div className="mt-3">
           {city?.name ? (
             <Link to={`/city/${city.urlSlug}`}>
-              <h3 className="font-title text-xl w-max	hover:text-white hover:bg-black">
+              <h3 className={"font-title text-xl " + LINKS_CLASSNAMES}>
                 {city.name}
               </h3>
             </Link>
           ) : (
             <Skeleton height={22.5} width={"50%"} />
+          )}
+          {city?.region ? (
+            <div>
+              <span
+                className={
+                  "font-text text-sm cursor-pointer " + LINKS_CLASSNAMES
+                }
+              >
+                {city.region}
+              </span>
+              <span className="font-text text-sm">, </span>
+              <span
+                className={
+                  "font-text text-sm cursor-pointer " + LINKS_CLASSNAMES
+                }
+              >
+                {city.country.name}
+              </span>
+            </div>
+          ) : (
+            <Skeleton height={20} width={"75%"} />
           )}
         </div>
       </div>
