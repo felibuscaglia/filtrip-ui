@@ -3,6 +3,8 @@ import Skeleton from "react-loading-skeleton";
 import { ICity } from "lib/interfaces";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
+import FIRE_ICON from "assets/icons/fire.png";
+import TrendingSticker from "./TrendingSticker";
 
 interface ICityCardProps {
   city: ICity | null;
@@ -71,7 +73,7 @@ const CityCard = ({ city, trending }: ICityCardProps) => {
               <Skeleton height={20} width={"40%"} />
             )}
           </div>
-          {trending && <span className="font-text text-sm bg-gray-200 h-min py-1 px-3 rounded-2xl">🔥 Trending</span>}
+          <TrendingSticker trending={trending} />
         </div>
       </div>
     </div>
