@@ -37,7 +37,7 @@ const CitiesSection = () => {
         className="grid grid-cols-3 gap-y-14"
       >
         {(cities.length ? cities : Array(6).fill(null)).map((city, i) => (
-          <CityCard city={city} key={`city-${city ? city?.name : i}`} />
+          <CityCard city={city} key={`city-${city ? city?.name : i}`} trending={i < 6} />
         ))}
       </InfiniteScroll>
     </section>
