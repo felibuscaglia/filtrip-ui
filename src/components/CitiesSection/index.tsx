@@ -1,26 +1,40 @@
 import { API_CLIENT as apiClient } from "lib/axios/apiClient";
 import { ICity } from "lib/interfaces";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CityCard from "./CityCard";
 
-const CitiesSection = () => {
+interface ICitiesSectionProps {
+  input: string | null;
+}
+
+const CitiesSection = ({ input }: ICitiesSectionProps) => {
   const [cities, setCities] = useState<ICity[]>([]);
   const [hasMoreCities, setHasMoreCities] = useState(true);
   const [page, setPage] = useState(0);
 
-  const fetchCities = () => {
+  useEffect(() => {
+    fetchCities();
+  }, []);
+
+  useEffect(() => {
+    fetchCities(true);
+  }, [input]);
+
+  const fetchCities = (refresh = false) => {
+    const _PAGE = refresh ? 0 : page;
     apiClient
       .get<ICity[]>("/cities", {
         params: {
-          page,
+          page: _PAGE,
           limit: 6,
           attributes: "name,urlSlug,region",
+          ...(input ? { name: input } : {}),
         },
       })
       .then(({ data }) => {
-        setCities(cities.concat(data));
-        setPage(page + 1);
+        setCities(refresh ? data : cities.concat(data));
+        setPage(_PAGE + 1);
         setHasMoreCities(!!data.length);
       })
       .catch((err) => console.error({ err }));
@@ -37,7 +51,11 @@ const CitiesSection = () => {
         className="grid grid-cols-3 gap-y-14"
       >
         {(cities.length ? cities : Array(6).fill(null)).map((city, i) => (
-          <CityCard city={city} key={`city-${city ? city?.name : i}`} trending={i < 6} />
+          <CityCard
+            city={city}
+            key={`city-${city ? city?.name : i}`}
+            trending={i < 6}
+          />
         ))}
       </InfiniteScroll>
     </section>
